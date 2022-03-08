@@ -13,6 +13,34 @@
         <div class="hand second-hand"></div>
       </div>
     </div>
-    <script></script>
+    <script>
+      const startClock = () => {
+        const hourHand = document.querySelector('.hour-hand');
+        const minutesdHand = document.querySelector('.min-hand');
+        const secondHand = document.querySelector('.second-hand');
+        setInterval(() => {
+          const date = new Date();
+          const hour = date.getHours();
+          const hourDegrees = ((hour / 12) * 360) + 90;
+          hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+          const minutes = date.getMinutes();
+          const minutesDegrees = ((minutes / 60) * 360) + 90;
+          minutesdHand.style.transform = `rotate(${minutes}deg)`;
+
+          const seconds = date.getSeconds();
+          const secondsDegrees = ((seconds / 60) * 360) + 90;
+          console.log(seconds);
+          if (seconds === 0) {
+            secondHand.style.transition = 'none';
+          } else {
+            secondHand.style.transition = 'all 0.05s';
+          }
+          secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        }, 1000);
+      };
+
+      startClock();
+    </script>
   </body>
 </html>
